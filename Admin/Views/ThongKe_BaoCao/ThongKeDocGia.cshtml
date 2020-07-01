@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "ThongKeDocGia";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@using QLTV_TTN.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<TKDocGia>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <form action="action_page.php">
+                        Từ ngày:
+                        <input type="date" name="bday">
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <form action="action_page.php">
+                        Đến ngày:
+                        <input type="date" name="bday">
+
+                    </form>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo" style="height: 35px;margin:-3px;">XEM</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="demo" class="collapse">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">Danh sách độc giả</h4>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Mã độc giả
+                                            </th>
+                                            <th>
+                                                Tên độc giả
+                                            </th>
+                                            <th>
+                                                Đơn vị
+                                            </th>
+                                            <th>
+                                                Số sách mượn
+                                            </th>
+                                            <th>
+                                                Vi phạm
+                                            </th>
+
+                                            <th>
+                                                Ghi chú
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (TKDocGia it in Model)
+                                        {
+                                            <tr>
+                                                <th>
+                                                    @it.MaDG
+                                                </th>
+                                                <th>
+                                                    @it.TenDG
+                                                </th>
+                                                <th>
+                                                    @it.DonVi
+                                                </th>
+                                                <th>
+                                                    @it.SoSachMuon
+                                                </th>
+                                                <th>
+                                                    Không
+                                                </th>
+                                                <th>
+                                                    <!--<a href="javascript:;">Sửa</a>
+                                                    |
+                                                    <a href="javascript:;">Xoá</a>-->
+                                                </th>
+                                            </tr>
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-12 text-center clear-both">
+                                @Html.PagedListPager(Model, sotrang => Url.Action("ThongKeDocGia", new { page = sotrang }))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

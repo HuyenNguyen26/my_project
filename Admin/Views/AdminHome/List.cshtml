@@ -1,0 +1,56 @@
+﻿@model PagedList.IPagedList<QLTV_TTN.Models.ACCOUNT>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Danh sách thành viên</h2>
+<p>
+    <button onclick="location.href='@Url.Action("DangKy", "AdminHome")';return false;">Đăng ký</button>
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.Label("ID")
+        </th>
+        <th>
+            @Html.Label("Username")
+        </th>
+        <th>
+            @Html.Label("Password")
+        </th>
+        <th>
+            @Html.Label("Fullname")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TK)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTen)
+            </td>
+            <td>
+                <button onclick="location.href='@Url.Action("Edit", "AdminHome",new { TK=item.TK })';return false;">Sửa</button>
+                @*<button onclick="location.href='@Url.Action("Details", "Admin", new { /* id=item.PrimaryKey */ })';return false;">Details</button>*@
+                <button onclick="location.href='@Url.Action("Delete", "AdminHome", new { TK = item.TK })';return false;">Xóa</button>
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("List", new { page }))
+</div>
+

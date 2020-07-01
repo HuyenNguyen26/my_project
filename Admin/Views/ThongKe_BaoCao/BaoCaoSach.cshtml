@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "BaoCaoSach";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>BaoCaoSach</h2>
+@using QLTV_TTN.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<BaoCaoSach>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <form action="action_page.php">
+                        Từ ngày:
+                        <input type="date" name="bday">
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <form action="action_page.php">
+                        Đến ngày:
+                        <input type="date" name="bday">
+
+                    </form>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo" style="height: 35px;margin:-3px;">XEM</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="demo" class="collapse">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="card">
+
+                        <div class="card-header card-header-primary">
+
+                            <h4 class="card-title ">Danh sách sách mượn</h4>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Mã cuốn sách
+                                            </th>
+                                            <th>
+                                                Tên
+                                            </th>
+                                            <th>
+                                                Mã độc giả
+                                            </th>
+                                            <th>
+                                                Mã thẻ
+                                            </th>
+                                            <th>
+                                                Ngày Mượn
+                                            </th>
+
+                                            <th>
+                                                Ghi Chú
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (BaoCaoSach it in Model)
+                                        {
+                                            <tr>
+                                                <th>
+                                                    @it.MaCuonSach
+                                                </th>
+                                                <th>
+                                                    @it.TenTuaSach
+                                                </th>
+                                                <th>
+                                                    @it.MaDG
+                                                </th>
+                                                <th>
+                                                    @it.SoThe
+                                                </th>
+                                                <th>
+                                                    @it.NgayMuon
+                                                </th>
+                                                <th>
+                                                    @it.NgayTra
+                                                </th>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
