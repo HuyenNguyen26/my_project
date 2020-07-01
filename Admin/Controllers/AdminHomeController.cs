@@ -29,10 +29,7 @@ namespace QLTV_TTN.Areas.Admin.Controllers
 
             return RedirectToAction("List");
         }
-        public ActionResult Login()
-        {
-            return View();
-        }
+        
 
         [HttpPost]
         public ActionResult CheckLogin()
